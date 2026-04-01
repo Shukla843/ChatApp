@@ -8,8 +8,8 @@ import {useSelector,useDispatch} from "react-redux";
 import io from "socket.io-client";
 import { setSocket } from './redux/socketSlice';
 import { setOnlineUsers } from './redux/userSlice';
-import { BASE_URL } from '.';
-
+dotenv.config();
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 const router = createBrowserRouter([
   {
     path:"/",
