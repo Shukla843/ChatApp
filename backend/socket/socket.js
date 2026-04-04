@@ -3,10 +3,9 @@ import http from "http";
 import express from "express";
 
 const app = express();
-
 const server = http.createServer(app);
 
-// ✅ FIX: Add both localhost + Vercel frontend
+// ✅ Allowed origins (dev + production)
 const io = new Server(server, {
   cors: {
     origin: [
@@ -28,7 +27,8 @@ export const getReceiverSocketId = (receiverId) => {
 io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId;
 
-  if (userId) {
+  // ✅ safer check
+  if (userId && userId !== "undefined") {
     userSocketMap[userId] = socket.id;
   }
 

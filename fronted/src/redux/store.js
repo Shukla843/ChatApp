@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice.js";
 import messageReducer from "./messageSlice.js";
+import socketReducer from "./socketSlice.js"; // ✅ ADD THIS
 
 import {
   persistReducer,
@@ -14,18 +15,18 @@ import {
 
 import storage from "redux-persist/lib/storage";
 
-// ❌ socketReducer removed
-
+// Persist config
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
 };
 
-// ✅ Only persist serializable slices
+// Root reducer with socket
 const rootReducer = combineReducers({
   user: userReducer,
   message: messageReducer,
+  socket: socketReducer, // ✅ ADD SOCKET
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
