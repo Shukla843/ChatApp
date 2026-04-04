@@ -88,7 +88,9 @@ export const login = async (req, res) => {
       .status(200)
       .cookie("token", token, {
         httpOnly: true,      // ✅ secure
-        sameSite: "strict",  // ✅ CSRF protection
+       
+        secure: true,        // must for production
+  sameSite: "none" ,    // REQUIRED for cross-site  // ✅ CSRF protection
         maxAge: 24 * 60 * 60 * 1000,
       })
       .json({
