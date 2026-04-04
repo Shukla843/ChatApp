@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import { setAuthUser, setOtherUsers, setSelectedUser } from '../redux/userSlice';
 import { setMessages } from '../redux/messageSlice';
-import { BASE_URL } from '..';
+import { BASE_URL } from '../config';
  
 const Sidebar = () => {
     const [search, setSearch] = useState("");
